@@ -1,18 +1,8 @@
 const { module, Schema } = require("mongoose");
 
+const AccountSchema = new Schema({
+  username: { username: String, require: true },
+  funds: { funds: Number, default: 0 },
+});
 
-const AccountSchema = new Schema ({
-
-    username: { username : String , require : true };
-    funds: { funds : Number , require : true };
-}
-
-);
-
-
-
-
-
-
-
-model.exports = model( "Accounts" , AccountSchema);
+module.exports = module("Accounts", AccountSchema);
