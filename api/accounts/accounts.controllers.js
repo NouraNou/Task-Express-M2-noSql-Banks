@@ -1,8 +1,8 @@
-let accounts = require("../../accounts");
+const Account = require("../../model/Account");
 
 exports.accountCreate = async (req, res) => {
   try {
-    const newAccount = await account.creat(req.body);
+    const newAccount = await Account.create(req.body);
     return res.status(201).json(newAccount);
   } catch (error) {
     console.log("Error");
@@ -48,13 +48,12 @@ exports.updateAccount = async (req, res) => {
   }
 };
 
-exports.accountsGet = async (req, res) => {
+exports.accountsGet = async (req, res, next) => {
   try {
-    accounts = await account.find();
+    const accounts = await Accounts.find();
     res.json(accounts);
-    //Customize the attributes so that createdAt and updatedAt are excluded.
   } catch (error) {
-    return res.status(500).json({ message: "account not found" });
+    next(error);
   }
 };
 

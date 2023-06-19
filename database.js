@@ -1,11 +1,12 @@
 const mongoose = require("mongoose");
-
+const detenv = require("dotenv");
+detenv.config();
 const connectDB = async () => {
   try {
-    const conn = await mongoose.connect(process.env.MONGO_DB_URL);
-    console.log(`mongo connected: ${conn.connection.host}`);
+    await mongoose.connect(process.env.MONGO_DB_URL);
+    console.log("Connected to DB");
   } catch (error) {
-    console.log("Data could not establish");
+    console.log("Could not connect to DB!");
   }
 };
 
